@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ellie Barrett | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #fcfbf7;
+      --color-bg-muted: #f3f0e8;
+      --color-surface: #ffffff;
+      --color-text: #171717;
+      --color-text-muted: #5f5a52;
+      --color-action-primary: #004be3;
+      --color-focus-highlight: #fecb00;
+      --color-accent-critical: #bb0009;
+      --color-border: rgba(23, 23, 23, 0.12);
+      --color-border-strong: rgba(23, 23, 23, 0.2);
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-pill: 999px;
+      --space-section: clamp(4rem, 8vw, 7rem);
+      --layout-content-width: min(1120px, calc(100% - 2rem));
+      --font-body: "Be Vietnam Pro", Arial, sans-serif;
+      --font-display: "Plus Jakarta Sans", Arial, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: var(--layout-content-width);
+      margin: 0 auto;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .section {
+      padding: var(--space-section) 0;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      z-index: 100;
+      padding: 0.65rem 0.9rem;
+      border-radius: 0.5rem;
+      background: var(--color-focus-highlight);
+      color: var(--color-text);
+      font-weight: 700;
+      text-decoration: none;
+      transform: translateY(-140%);
+      transition: transform 160ms ease;
+    }
+
+    .skip-link:focus-visible {
+      transform: translateY(0);
+      outline: 3px solid var(--color-text);
+      outline-offset: 2px;
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(252, 251, 247, 0.84);
+      border-bottom: 1px solid rgba(23, 23, 23, 0.08);
+    }
+
+    .site-nav__inner {
+      display: flex;
+      align-items: center;
+      gap: 1rem 1.5rem;
+      min-height: 5rem;
+      padding: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .site-nav__brand {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .site-nav__links {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem 1.5rem;
+      flex: 1 1 18rem;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .site-nav__item {
+      display: flex;
+    }
+
+    .site-nav__link {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 160ms ease, opacity 160ms ease;
+    }
+
+    .site-nav__link[aria-current="page"] {
+      color: var(--color-text);
+      text-decoration: underline;
+      text-decoration-color: var(--color-focus-highlight);
+      text-decoration-thickness: 0.18rem;
+      text-underline-offset: 0.48em;
+    }
+
+    .site-nav__cta {
+      margin-left: auto;
+      box-shadow: 0 10px 24px rgba(0, 75, 227, 0.18);
+    }
+
+    .site-nav__brand:hover,
+    .site-nav__brand:focus-visible,
+    .site-nav__link:hover,
+    .site-nav__link:focus-visible {
+      color: var(--color-text);
+    }
+
+    .site-nav__brand:focus-visible,
+    .site-nav__link:focus-visible {
+      outline: 3px solid var(--color-focus-highlight);
+      outline-offset: 4px;
+      border-radius: 0.5rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 3rem;
+      padding: 0.75rem 1.25rem;
+      border: 1px solid transparent;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease,
+        transform 160ms ease;
+    }
+
+    .button:disabled,
+    .button[aria-disabled="true"] {
+      opacity: 0.55;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .button-primary {
+      background: var(--color-action-primary);
+      color: #ffffff;
+    }
+
+    .button-primary:hover,
+    .button-primary:focus-visible {
+      background: #003cb6;
+      transform: translateY(-1px);
+    }
+
+    .button-secondary {
+      background: var(--color-surface);
+      color: var(--color-text);
+      border-color: var(--color-border-strong);
+    }
+
+    .button-secondary:hover,
+    .button-secondary:focus-visible {
+      border-color: var(--color-accent-critical);
+      color: var(--color-accent-critical);
+    }
+
+    .button:focus-visible,
+    .button-secondary:focus-visible {
+      outline: 3px solid var(--color-focus-highlight);
+      outline-offset: 2px;
+    }
+
+    .section-anchor {
+      min-height: 24rem;
+      scroll-margin-top: 7rem;
+    }
+
+    .section-anchor__inner {
+      min-height: 100%;
+    }
+
+    .hero {
+      padding: clamp(3.5rem, 8vw, 6.5rem) 0 clamp(3rem, 6vw, 4.75rem);
+    }
+
+    .hero__inner {
+      display: grid;
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .hero__content {
+      max-width: 52rem;
+    }
+
+    .hero__title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(3.4rem, 8vw, 6.9rem);
+      font-weight: 800;
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      text-wrap: balance;
+    }
+
+    .hero__accent {
+      display: inline-block;
+      color: var(--color-action-primary);
+      font-style: italic;
+    }
+
+    .hero__highlight {
+      display: inline-block;
+      padding: 0.03em 0.2em 0.08em;
+      border-radius: 0.22em;
+      background: var(--color-focus-highlight);
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    .hero__copy {
+      max-width: 38rem;
+      margin: 1.8rem 0 0;
+      color: var(--color-text-muted);
+      font-size: clamp(1rem, 1.45vw, 1.18rem);
+      line-height: 1.7;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .hero__actions .button {
+      min-height: 3.4rem;
+      padding: 0.9rem 1.45rem;
+      font-weight: 700;
+      box-shadow: 0 12px 28px rgba(23, 23, 23, 0.08);
+    }
+
+    .hero__actions .button-primary {
+      box-shadow: 0 16px 34px rgba(0, 75, 227, 0.24);
+    }
+
+    .hero__actions .button-secondary {
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .hero__title span {
+      will-change: transform;
+    }
+
+    .expertise {
+      background: var(--color-bg-muted);
+    }
+
+    .expertise__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+
+    .expertise__intro {
+      max-width: 34rem;
+      margin-bottom: 2rem;
+    }
+
+    .expertise__eyebrow {
+      margin: 0 0 0.75rem;
+      color: var(--color-action-primary);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .expertise__title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
+    }
+
+    .expertise__copy {
+      margin: 1rem 0 0;
+      color: var(--color-text-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .expertise__list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .expertise-card {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 1rem;
+      padding: 1.3rem;
+      border: 1px solid rgba(23, 23, 23, 0.08);
+      border-radius: 1.5rem;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 16px 40px rgba(23, 23, 23, 0.05);
+    }
+
+    .expertise-card__icon {
+      display: grid;
+      place-items: center;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 1.15rem;
+      background: rgba(0, 75, 227, 0.1);
+      color: var(--color-action-primary);
+      flex-shrink: 0;
+    }
+
+    .expertise-card__icon svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .expertise-card__title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .expertise-card__text {
+      margin: 0.55rem 0 0;
+      color: var(--color-text-muted);
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+
+    .expertise__visual {
+      min-height: clamp(20rem, 42vw, 31rem);
+      border: 1px solid rgba(23, 23, 23, 0.08);
+      border-radius: 2rem;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.78), transparent 42%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0)),
+        #d9d4cb;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 22px 50px rgba(23, 23, 23, 0.08);
+      overflow: hidden;
+    }
+
+    .expertise__visual-frame {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      isolation: isolate;
+    }
+
+    .expertise__visual-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 26%;
+      filter: saturate(0.93) contrast(1.02);
+      transform: scale(1.03);
+    }
+
+    .expertise__visual-note {
+      position: absolute;
+      left: clamp(1rem, 3vw, 1.8rem);
+      bottom: clamp(1rem, 3vw, 1.8rem);
+      max-width: 16rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(23, 23, 23, 0.08);
+      border-radius: 1.25rem;
+      background: rgba(252, 251, 247, 0.88);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 30px rgba(23, 23, 23, 0.08);
+      z-index: 1;
+    }
+
+    .expertise__visual-label {
+      display: block;
+      margin-bottom: 0.45rem;
+      color: var(--color-text-muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .expertise__visual-note p {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+
+    .work {
+      padding-top: clamp(3.5rem, 8vw, 5.5rem);
+      scroll-margin-top: 7rem;
+    }
+
+    .section-heading {
+      margin: 0 0 2rem;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .case-study-list {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .case-study-card {
+      display: grid;
+      overflow: hidden;
+      border: 1px solid rgba(23, 23, 23, 0.08);
+      border-radius: 1.25rem;
+      background: rgba(255, 255, 255, 0.9);
+      color: inherit;
+      text-decoration: none;
+      box-shadow: 0 14px 40px rgba(23, 23, 23, 0.05);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .case-study-card:hover,
+    .case-study-card:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(0, 75, 227, 0.22);
+      box-shadow: 0 22px 48px rgba(23, 23, 23, 0.09);
+    }
+
+    .case-study-card:focus-visible {
+      outline: 3px solid var(--color-focus-highlight);
+      outline-offset: 3px;
+    }
+
+    .case-study-card__media {
+      position: relative;
+      min-height: clamp(12rem, 25vw, 17rem);
+      background: linear-gradient(135deg, rgba(0, 75, 227, 0.12), rgba(255, 255, 255, 0.35)),
+        #e9e4db;
+      overflow: hidden;
+    }
+
+    .case-study-card__media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15, 15, 15, 0) 45%, rgba(15, 15, 15, 0.12) 100%);
+      pointer-events: none;
+    }
+
+    .case-study-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transform: scale(1.01);
+      transition: transform 280ms ease;
+    }
+
+    .case-study-card:hover .case-study-card__media img,
+    .case-study-card:focus-visible .case-study-card__media img {
+      transform: scale(1.045);
+    }
+
+    .case-study-card__media--wcr {
+      background:
+        radial-gradient(circle at 22% 22%, rgba(255, 255, 255, 0.9), transparent 20%),
+        linear-gradient(135deg, rgba(0, 75, 227, 0.16), rgba(254, 203, 0, 0.18)),
+        #ebe7de;
+    }
+
+    .case-study-card__media--ffs {
+      background:
+        radial-gradient(circle at 76% 24%, rgba(255, 255, 255, 0.82), transparent 18%),
+        linear-gradient(135deg, rgba(187, 0, 9, 0.12), rgba(0, 75, 227, 0.12)),
+        #e7e1d7;
+    }
+
+    .case-study-card__media--gifct {
+      background:
+        radial-gradient(circle at 50% 32%, rgba(255, 255, 255, 0.78), transparent 18%),
+        linear-gradient(135deg, rgba(0, 75, 227, 0.18), rgba(23, 23, 23, 0.1)),
+        #e5e0d8;
+    }
+
+    .case-study-card__body {
+      display: grid;
+      gap: 0.95rem;
+      padding: clamp(1.5rem, 3vw, 2.2rem);
+    }
+
+    .case-study-card__sector {
+      color: var(--color-text-muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .case-study-card__title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.45rem, 2vw, 1.9rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .case-study-card__copy {
+      margin: 0;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    .case-study-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .case-study-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 1.9rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .case-study-tag--blue {
+      background: var(--color-action-primary);
+      color: #ffffff;
+    }
+
+    .case-study-tag--yellow {
+      background: var(--color-focus-highlight);
+      color: var(--color-action-primary);
+    }
+
+    .case-study-tag--red {
+      background: var(--color-accent-critical);
+      color: #fff2d0;
+    }
+
+    .case-study-card__metrics {
+      margin: 0;
+      color: #1d9e75;
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .case-study-card__link {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .about {
+      padding-top: clamp(3rem, 7vw, 5rem);
+      scroll-margin-top: 7rem;
+    }
+
+    .about__inner,
+    .contact__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+
+    .about__copy {
+      max-width: 39rem;
+    }
+
+    .about__copy p,
+    .contact__lead {
+      margin: 0 0 1rem;
+      color: var(--color-text-muted);
+      line-height: 1.75;
+    }
+
+    .about__copy p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .about__facts,
+    .contact__details {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid rgba(23, 23, 23, 0.08);
+    }
+
+    .about__fact,
+    .contact__detail {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(23, 23, 23, 0.08);
+    }
+
+    .about__fact-label,
+    .contact__detail-label {
+      color: var(--color-text-muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .about__fact-value,
+    .contact__detail-value {
+      text-align: right;
+      font-weight: 600;
+    }
+
+    .contact {
+      padding-top: clamp(2.5rem, 6vw, 4.5rem);
+      padding-bottom: clamp(3rem, 7vw, 5rem);
+      scroll-margin-top: 7rem;
+    }
+
+    .contact__lead {
+      max-width: 34rem;
+    }
+
+    .contact__cta {
+      margin-top: 1rem;
+    }
+
+    .contact__link,
+    .footer__link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .contact__link:hover,
+    .contact__link:focus-visible,
+    .footer__link:hover,
+    .footer__link:focus-visible {
+      color: var(--color-action-primary);
+    }
+
+    .footer {
+      margin-top: 1rem;
+      padding: clamp(2rem, 4vw, 3rem) 0;
+      border-top-left-radius: 2.4rem;
+      border-top-right-radius: 2.4rem;
+      background: #edf3fb;
+    }
+
+    .footer__inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer__name {
+      margin: 0;
+      color: var(--color-action-primary);
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .footer__meta {
+      margin: 0.35rem 0 0;
+      color: var(--color-text-muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .footer__links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      color: var(--color-text-muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .reveal {
+      animation: rise-in 460ms ease both;
+    }
+
+    .reveal--delay-1 {
+      animation-delay: 70ms;
+    }
+
+    @keyframes rise-in {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 700px) {
+      .site-nav__inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 0.875rem 1rem;
+        min-height: auto;
+      }
+
+      .site-nav__brand {
+        min-width: 0;
+      }
+
+      .site-nav__links {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        gap: 0.5rem 1rem;
+      }
+
+      .site-nav__cta {
+        margin-left: 0;
+        justify-self: end;
+      }
+
+      .hero {
+        padding-top: 2.75rem;
+      }
+
+      .hero__title {
+        font-size: clamp(2.7rem, 14vw, 4.15rem);
+        line-height: 1;
+        text-wrap: initial;
+      }
+
+      .hero__copy {
+        margin-top: 1.35rem;
+        line-height: 1.65;
+      }
+
+      .hero__actions {
+        gap: 0.75rem;
+        margin-top: 1.6rem;
+      }
+
+      .hero__actions .button {
+        width: 100%;
+      }
+
+      .expertise__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .expertise__intro {
+        margin-bottom: 1.5rem;
+      }
+
+      .expertise-card {
+        grid-template-columns: 1fr;
+      }
+
+      .expertise__visual {
+        min-height: 18rem;
+      }
+
+      .expertise__visual-note {
+        right: 1rem;
+        max-width: calc(100% - 2rem);
+      }
+
+      .about__inner,
+      .contact__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .about__fact,
+      .contact__detail {
+        flex-direction: column;
+      }
+
+      .about__fact-value,
+      .contact__detail-value {
+        text-align: left;
+      }
+
+      .footer__inner {
+        align-items: flex-start;
+      }
+
+      .footer__links {
+        gap: 0.9rem 1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#top">Skip to main content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="container site-nav__inner">
+      <a class="site-nav__brand" href="#top">Ellie Barrett</a>
+      <ul class="site-nav__links">
+        <li class="site-nav__item"><a class="site-nav__link" href="#work" aria-current="page">Work</a></li>
+        <li class="site-nav__item"><a class="site-nav__link" href="#about">About</a></li>
+        <li class="site-nav__item"><a class="site-nav__link" href="#contact">Contact</a></li>
+      </ul>
+      <a class="button button-primary site-nav__cta" href="#contact">Get in Touch</a>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container hero__inner">
+        <div class="hero__content reveal">
+          <h1 id="hero-heading" class="hero__title">
+            Crafting <span class="hero__accent">Kinetic</span><br>
+            Logic for<br>
+            <span class="hero__highlight">Human</span> Needs.
+          </h1>
+          <p class="hero__copy">
+            Ellie Barrett designs accessible, playful product systems that help people feel confident,
+            oriented, and in control. Her work blends senior product design craft with intuitive flows,
+            thoughtful interaction patterns, and a deep respect for human needs.
+          </p>
+          <div class="hero__actions reveal reveal--delay-1">
+            <a class="button button-primary" href="#work">Explore Projects</a>
+            <a class="button button-secondary" href="#contact">Start a Conversation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section expertise" aria-labelledby="expertise-heading">
+      <div class="container expertise__inner">
+        <div class="expertise__content">
+          <div class="expertise__intro">
+            <p class="expertise__eyebrow">Expertise</p>
+            <h2 id="expertise-heading" class="expertise__title">
+              Turning product ambition into clear, measurable experiences.
+            </h2>
+            <p class="expertise__copy">
+              Ellie Barrett helps teams sharpen the story, structure, and signal behind digital products
+              so every interaction feels more intuitive, persuasive, and inclusive.
+            </p>
+          </div>
+          <div class="expertise__list">
+            <article class="expertise-card">
+              <div class="expertise-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 18h14"></path>
+                  <path d="M7 14l3-3 3 2 4-5"></path>
+                  <circle cx="7" cy="14" r="1"></circle>
+                  <circle cx="10" cy="11" r="1"></circle>
+                  <circle cx="13" cy="13" r="1"></circle>
+                  <circle cx="17" cy="8" r="1"></circle>
+                </svg>
+              </div>
+              <div>
+                <h3 class="expertise-card__title">CRO Strategy</h3>
+                <p class="expertise-card__text">
+                  Auditing journeys, sharpening decision points, and aligning interface cues to improve
+                  clarity, trust, and conversion without sacrificing brand character.
+                </p>
+              </div>
+            </article>
+            <article class="expertise-card">
+              <div class="expertise-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 4l6 3.5v9L12 20l-6-3.5v-9L12 4z"></path>
+                  <path d="M12 4v16"></path>
+                  <path d="M6 7.5l12 9"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="expertise-card__title">Brand Identity</h3>
+                <p class="expertise-card__text">
+                  Translating positioning into visual systems and interaction details that feel cohesive,
+                  confident, and memorable across launch moments and product touchpoints.
+                </p>
+              </div>
+            </article>
+            <article class="expertise-card">
+              <div class="expertise-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 4a7 7 0 0 0 0 14"></path>
+                  <path d="M12 4a7 7 0 0 1 0 14"></path>
+                  <path d="M5 12h14"></path>
+                  <path d="M12 4c2.5 2.3 3.8 5 4 8"></path>
+                  <path d="M12 20c-2.5-2.3-3.8-5-4-8"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="expertise-card__title">Inclusive Design</h3>
+                <p class="expertise-card__text">
+                  Designing for a wider range of needs with accessible patterns, readable structure, and
+                  thoughtful micro-decisions that make products easier to use and easier to trust.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="expertise__visual reveal reveal--delay-1">
+          <div class="expertise__visual-frame">
+            <img src="Assets/IMG_0327.jpg" alt="" loading="lazy">
+            <div class="expertise__visual-note">
+              <span class="expertise__visual-label">Selected snapshot</span>
+              <p>Design direction grounded in real portfolio work, balancing clarity, energy, and accessibility.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="work" class="section work" aria-labelledby="work-heading">
+      <div class="container">
+        <h2 id="work-heading" class="section-heading">Case Studies</h2>
+        <div class="case-study-list">
+          <a class="case-study-card" href="wcr-embedded.html">
+            <div class="case-study-card__media case-study-card__media--wcr" aria-hidden="true">
+              <img src="Assets/wcr-embedded-img01.webp" alt="" loading="lazy">
+            </div>
+            <div class="case-study-card__body">
+              <span class="case-study-card__sector">Charity / Not for profit</span>
+              <h3 class="case-study-card__title">Worldwide Cancer Research</h3>
+              <p class="case-study-card__copy">
+                Full website redesign for a cancer research charity, spanning discovery, strategy,
+                IA, and design through to launch.
+              </p>
+              <div class="case-study-card__tags" aria-label="Project tags">
+                <span class="case-study-tag case-study-tag--blue">Website Redesign</span>
+                <span class="case-study-tag case-study-tag--yellow">Strategy</span>
+                <span class="case-study-tag case-study-tag--red">UX</span>
+                <span class="case-study-tag case-study-tag--yellow">UI</span>
+              </div>
+              <p class="case-study-card__metrics">
+                +GBP1,157/month in donations · +18.6% users · +19.6% session duration
+              </p>
+              <span class="case-study-card__link">View case study →</span>
+            </div>
+          </a>
+          <a class="case-study-card" href="ffs-embedded.html">
+            <div class="case-study-card__media case-study-card__media--ffs" aria-hidden="true">
+              <img src="Assets/ffs-embedded-img03.webp" alt="" loading="lazy">
+            </div>
+            <div class="case-study-card__body">
+              <span class="case-study-card__sector">Charity / Not for profit</span>
+              <h3 class="case-study-card__title">Fight for Sight</h3>
+              <p class="case-study-card__copy">
+                Website redesign for the UK's leading eye research charity, shaped around accessibility,
+                merged audiences, and a newly unified brand.
+              </p>
+              <div class="case-study-card__tags" aria-label="Project tags">
+                <span class="case-study-tag case-study-tag--blue">Research</span>
+                <span class="case-study-tag case-study-tag--yellow">Accessibility</span>
+                <span class="case-study-tag case-study-tag--red">Strategy</span>
+                <span class="case-study-tag case-study-tag--yellow">UX</span>
+                <span class="case-study-tag case-study-tag--red">UI</span>
+              </div>
+              <p class="case-study-card__metrics">
+                +70% donations page traffic · 228 newsletter sign-ups/month · +GBP10k donation income
+              </p>
+              <span class="case-study-card__link">View case study →</span>
+            </div>
+          </a>
+          <a class="case-study-card" href="gifct-embedded_1.html">
+            <div class="case-study-card__media case-study-card__media--gifct" aria-hidden="true">
+              <img src="Assets/gifct-embedded_1-img01.png" alt="" loading="lazy">
+            </div>
+            <div class="case-study-card__body">
+              <span class="case-study-card__sector">Global digital platform</span>
+              <h3 class="case-study-card__title">The Global Internet Forum to Counter Terrorism</h3>
+              <p class="case-study-card__copy">
+                Portfolio and platform design work focused on translating complex institutional goals
+                into clearer journeys, stronger trust signals, and easier decision-making.
+              </p>
+              <div class="case-study-card__tags" aria-label="Project tags">
+                <span class="case-study-tag case-study-tag--blue">Website Redesign</span>
+                <span class="case-study-tag case-study-tag--yellow">Strategy</span>
+                <span class="case-study-tag case-study-tag--red">UX</span>
+                <span class="case-study-tag case-study-tag--yellow">UI</span>
+              </div>
+              <p class="case-study-card__metrics">
+                Clearer information pathways · stronger trust framing · improved cross-audience usability
+              </p>
+              <span class="case-study-card__link">View case study →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section id="about" class="section about" aria-labelledby="about-heading">
+      <div class="container about__inner">
+        <div class="about__copy">
+          <h2 id="about-heading" class="section-heading">Six years of UX, agency and in-house.</h2>
+          <p>
+            I'm a senior UX designer with five years of agency experience and a further year in-house as
+            part of a global design team. I work across the full process, from early discovery and
+            stakeholder research through to strategy, information architecture, and design handed over
+            ready to build.
+          </p>
+          <p>
+            Accessibility, sustainable design, and cognitive clarity sit at the centre of how I work. I
+            am drawn to organisations with a real communication challenge, where research meaningfully
+            changes the outcome rather than simply validating it.
+          </p>
+        </div>
+        <ul class="about__facts">
+          <li class="about__fact">
+            <span class="about__fact-label">Current role</span>
+            <span class="about__fact-value">Senior UX Designer, Yoyo Design</span>
+          </li>
+          <li class="about__fact">
+            <span class="about__fact-label">Based</span>
+            <span class="about__fact-value">Kent, UK</span>
+          </li>
+          <li class="about__fact">
+            <span class="about__fact-label">Experience</span>
+            <span class="about__fact-value">5 years agency + 1 year in-house</span>
+          </li>
+          <li class="about__fact">
+            <span class="about__fact-label">Sectors</span>
+            <span class="about__fact-value">Charities, NGOs, ed-tech, startups</span>
+          </li>
+          <li class="about__fact">
+            <span class="about__fact-label">Availability</span>
+            <span class="about__fact-value">Open to new projects</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section id="contact" class="section contact" aria-labelledby="contact-heading">
+      <div class="container contact__inner">
+        <div>
+          <h2 id="contact-heading" class="section-heading">Got a project in mind?</h2>
+          <p class="contact__lead">
+            I'm open to freelance projects, retainers, and conversations that might become something.
+            Charities, NGOs, ed-tech, and startups are where I do my best work, but I'm always open to
+            an interesting brief.
+          </p>
+          <a class="button button-primary contact__cta" href="mailto:hello@elliebarrett.design">Email Ellie</a>
+        </div>
+        <ul class="contact__details">
+          <li class="contact__detail">
+            <span class="contact__detail-label">Email</span>
+            <span class="contact__detail-value">
+              <a class="contact__link" href="mailto:hello@elliebarrett.design">hello@elliebarrett.design</a>
+            </span>
+          </li>
+          <li class="contact__detail">
+            <span class="contact__detail-label">LinkedIn</span>
+            <span class="contact__detail-value">
+              <a class="contact__link" href="https://linkedin.com/in/elliebarrett" target="_blank" rel="noreferrer">linkedin.com/in/elliebarrett <span class="visually-hidden">(opens in a new tab)</span></a>
+            </span>
+          </li>
+          <li class="contact__detail">
+            <span class="contact__detail-label">Based</span>
+            <span class="contact__detail-value">Kent, UK, working remotely &amp; on-site</span>
+          </li>
+          <li class="contact__detail">
+            <span class="contact__detail-label">Availability</span>
+            <span class="contact__detail-value">Open to projects from now</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <p class="footer__name">Ellie Barrett</p>
+        <p class="footer__meta">Senior Product Designer</p>
+      </div>
+      <div class="footer__links" aria-label="Footer links">
+        <a class="footer__link" href="https://linkedin.com/in/elliebarrett" target="_blank" rel="noreferrer">LinkedIn <span class="visually-hidden">(opens in a new tab)</span></a>
+        <a class="footer__link" href="mailto:hello@elliebarrett.design">Email</a>
+        <a class="footer__link" href="#work">Work</a>
+        <a class="footer__link" href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (() => {
+      const navLinks = Array.from(document.querySelectorAll(".site-nav__link"));
+      const sectionGroupSelectors = {
+        work: ["#work"],
+        about: [".hero", ".expertise", "#about"],
+        contact: ["#contact"],
+      };
+      const trackedSections = navLinks.flatMap((link) => {
+        const sectionId = link.getAttribute("href")?.replace("#", "");
+        if (!sectionId) {
+          return [];
+        }
+
+        const selectors = sectionGroupSelectors[sectionId] ?? [`#${sectionId}`];
+        return selectors
+          .map((selector) => document.querySelector(selector))
+          .filter(Boolean)
+          .map((section) => ({ link, section }));
+      });
+
+      if (!trackedSections.length) {
+        return;
+      }
+
+      const sectionByLink = new Map();
+      trackedSections.forEach((match) => {
+        if (!sectionByLink.has(match.link)) {
+          sectionByLink.set(match.link, match.section);
+        }
+      });
+
+      const setActiveLink = (activeLink) => {
+        navLinks.forEach((link) => {
+          if (link === activeLink) {
+            link.setAttribute("aria-current", "page");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      };
+
+      let pendingLink = null;
+      const updateActiveFromScroll = () => {
+        const anchorY = window.innerHeight * 0.35;
+
+        if (pendingLink) {
+          const pendingSection = sectionByLink.get(pendingLink);
+          if (pendingSection) {
+            const pendingTop = pendingSection.getBoundingClientRect().top;
+            if (pendingTop > anchorY) {
+              setActiveLink(pendingLink);
+              return;
+            }
+          }
+          pendingLink = null;
+        }
+
+        let bestPastMatch = null;
+        let bestUpcomingMatch = null;
+
+        trackedSections.forEach((match) => {
+          const top = match.section.getBoundingClientRect().top;
+
+          if (top <= anchorY) {
+            if (!bestPastMatch || top > bestPastMatch.top) {
+              bestPastMatch = { link: match.link, top };
+            }
+            return;
+          }
+
+          if (!bestUpcomingMatch || top < bestUpcomingMatch.top) {
+            bestUpcomingMatch = { link: match.link, top };
+          }
+        });
+
+        const activeMatch = bestPastMatch ?? bestUpcomingMatch;
+        if (activeMatch) {
+          setActiveLink(activeMatch.link);
+        }
+      };
+
+      let rafId = null;
+      const queueUpdate = () => {
+        if (rafId !== null) {
+          return;
+        }
+
+        rafId = window.requestAnimationFrame(() => {
+          rafId = null;
+          updateActiveFromScroll();
+        });
+      };
+
+      window.addEventListener("scroll", queueUpdate, { passive: true });
+      window.addEventListener("resize", queueUpdate);
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          pendingLink = link;
+          setActiveLink(link);
+          queueUpdate();
+        });
+      });
+
+      updateActiveFromScroll();
+    })();
+  </script>
+</body>
+</html>

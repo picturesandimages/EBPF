@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Study | GIFCT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#f6f6f9; --surface:#fff; --surface-muted:#f0f0f3; --text:#2d2f31; --text-muted:#5a5c5e;
+      --blue:#004be3; --radius-lg:32px; --radius-xl:48px; --max:min(1216px, calc(100% - 2rem));
+      --body:"Be Vietnam Pro", Arial, sans-serif; --display:"Plus Jakarta Sans", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; } body { margin:0; background:var(--bg); color:var(--text); font-family:var(--body); line-height:1.6; }
+    .container { width: var(--max); margin: 0 auto; }
+    .top { position: sticky; top: 0; z-index: 10; background: rgba(246,246,249,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(45,47,49,0.12); }
+    .top__inner { min-height: 80px; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .top a { text-decoration: none; color: inherit; font-weight: 600; }
+    .top a.btn { color: #fff; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0.7rem 1.2rem; border-radius:999px; background:var(--blue); color:#fff; font-weight:700; text-decoration:none; }
+    .hero { padding: 5.5rem 0 4rem; }
+    .hero__grid { display:grid; gap:2.5rem; grid-template-columns:1.15fr 0.85fr; align-items:center; }
+    .kicker { display:inline-block; padding:0.35rem 0.9rem; border-radius:999px; background:rgba(129,155,255,0.35); color:#001b61; font-size:0.8rem; letter-spacing:0.09em; font-weight:700; text-transform:uppercase; }
+    .kicker-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    h1,h2,h3 { margin:0; font-family:var(--display); line-height:1.05; letter-spacing:-0.03em; }
+    h1 { margin-top:1rem; font-size:clamp(2.1rem, 6vw, 4.6rem); }
+    .accent { color: var(--blue); font-style: italic; }
+    .hero p { margin:1.2rem 0 0; color:var(--text-muted); max-width:56ch; }
+    .hero__media { aspect-ratio: 1 / 1; border-radius:var(--radius-xl); overflow:hidden; box-shadow:0 24px 50px rgba(0,0,0,0.18); }
+    .hero__media img { width:100%; height: 100%; object-fit: cover; object-position: center; display:block; }
+    .section-shell { background:var(--surface-muted); border-top-left-radius:var(--radius-xl); border-top-right-radius:var(--radius-xl); padding:2rem 0 5rem; }
+    .section-title { margin: 0 0 0.6rem; font-size: clamp(1.7rem, 3vw, 2.25rem); }
+    .section-lede { margin: 0 0 2rem; color: var(--text-muted); max-width: 60ch; }
+    .section-block { margin-top: 4rem; }
+    .bento { display:grid; gap:1.5rem; grid-template-columns:1.2fr 0.8fr; align-items: stretch; }
+    .card { background:#fff; border-radius:var(--radius-lg); padding:2rem; border:1px solid rgba(45,47,49,0.08); } .card p { margin:0.9rem 0 0; color:var(--text-muted); }
+    .insight { background:var(--blue); color:#f2f1ff; border-radius:var(--radius-lg); padding:2rem; display: flex; flex-direction: column; justify-content: center; }
+    .insight blockquote { margin:0; font-style:italic; font-size: 1.15rem; line-height: 1.5; }
+    .insight cite { display:block; margin-top:1rem; font-size:0.85rem; opacity:0.85; font-style: normal; }
+    .solution { grid-column:1 / -1; display:grid; gap:1.5rem; grid-template-columns:1fr 1fr; align-items:center; }
+    .bullets { margin:1rem 0 0; padding-left:1.1rem; } .bullets li { margin-bottom:0.45rem; }
+    .feature-grid { margin-top:1.6rem; display:grid; gap:1rem; grid-template-columns:repeat(2, minmax(0, 1fr)); align-items: stretch; }
+    .feature-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .feature { border:1px solid rgba(45,47,49,0.08); border-radius:24px; padding:1.4rem; background:#fff; display: flex; flex-direction: column; }
+    .feature img { width:100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top center; border-radius:14px; display:block; margin-bottom:1rem; max-height: 220px; }
+    .feature h3 { font-size: 1.15rem; }
+    .feature p { margin: 0.6rem 0 0; color: var(--text-muted); font-size: 0.95rem; }
+    .feature ul { margin: 0.8rem 0 0; padding-left: 1.1rem; color: var(--text-muted); font-size: 0.95rem; }
+    .feature ul li { margin-bottom: 0.35rem; }
+    .persona-grid { margin-top: 1.6rem; display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
+    .persona-card { background: #fff; border: 1px solid rgba(45,47,49,0.08); border-radius: 24px; padding: 1.6rem; display: flex; flex-direction: column; }
+    .persona-card__label { display: inline-block; padding: 0.3rem 0.7rem; border-radius: 999px; background: rgba(0, 75, 227, 0.12); color: #001b61; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; align-self: flex-start; }
+    .persona-card h3 { margin-top: 0.9rem; font-size: 1.2rem; }
+    .persona-card blockquote { margin: 0.8rem 0 0; padding: 0; font-style: italic; color: var(--blue); font-size: 1rem; line-height: 1.4; }
+    .persona-card p { margin: 0.8rem 0 0; color: var(--text-muted); font-size: 0.92rem; }
+    .results-shell { margin-top: 0; background: #0f172a; color: #f2f1ff; border-radius: 32px; padding: 2.5rem; }
+    .results-shell h2 { color: #f2f1ff; }
+    .results-shell p { color: rgba(242, 241, 255, 0.82); }
+    .results-shell .metrics { display: grid; gap: 0.8rem; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 1.5rem; }
+    .results-shell .metric { background: rgba(255,255,255,0.08); border-radius: 20px; border: 1px solid rgba(242,241,255,0.14); padding: 1.2rem; }
+    .results-shell .metric strong { display: block; color: #f2f1ff; font-size: 1.7rem; font-family: var(--display); line-height: 1.1; font-style: italic; }
+    .results-shell .metric span { font-size: 0.82rem; color: rgba(242,241,255,0.78); letter-spacing: 0.04em; }
+    .testimonial-grid { margin-top: 1.6rem; display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
+    .testimonial { background: #fff; border: 1px solid rgba(45,47,49,0.08); border-radius: 24px; padding: 1.6rem; display: flex; flex-direction: column; }
+    .testimonial blockquote { margin: 0; font-size: 1rem; line-height: 1.5; color: var(--text); flex-grow: 1; }
+    .testimonial blockquote::before { content: "\201C"; display: block; font-family: var(--display); font-size: 2.5rem; line-height: 0.6; color: var(--blue); margin-bottom: 0.5rem; }
+    .testimonial cite { display: block; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid rgba(45,47,49,0.08); font-style: normal; font-size: 0.85rem; color: var(--text-muted); }
+    .testimonial cite strong { display: block; color: var(--text); font-weight: 700; margin-bottom: 0.15rem; }
+    .solution img { width:100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top center; display:block; border-radius:var(--radius-lg); }
+    .footer-cta { margin-top: 3.2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .footer-cta__label { margin: 0; color: #5a5c5e; letter-spacing: 0.08em; font-size: 0.78rem; text-transform: uppercase; font-weight: 700; }
+    .footer-cta h3 { margin-top: 0.4rem; font-size: 1.6rem; }
+    @media (max-width:920px) {
+      .hero__grid, .bento, .solution, .feature-grid, .feature-grid--three, .persona-grid, .testimonial-grid, .results-shell .metrics { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="container top__inner">
+      <a href="portfolio-figma.html">Ellie Barrett</a>
+      <a class="btn" href="portfolio-figma.html#work">Back to work</a>
+    </div>
+  </header>
+  <main>
+    <section class="hero container">
+      <div class="hero__grid">
+        <div>
+          <div class="kicker-group">
+            <span class="kicker">Data visualisation tool</span>
+            <span class="kicker">Complex stakeholder</span>
+            <span class="kicker">User interviews</span>
+          </div>
+          <h1>GIFCT <span class="accent">Definitional</span> Frameworks</h1>
+          <p>A research tool for counter-terrorism teams worldwide, making global legal definitions of terrorism and violent extremism quick to access, compare, and digest, without embedding bias into the interface.</p>
+        </div>
+        <div class="hero__media">
+          <img src="Assets/gifct-embedded_1-img01.png" alt="GIFCT framework tool map interface">
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell">
+      <div class="container">
+
+        <!-- RESULTS -->
+        <section class="results-shell">
+          <h2>The Outcome</h2>
+          <p>Launched at the GIFCT's annual global summit, the tool became the most widely adopted digital release in the organisation's history.</p>
+          <div class="metrics">
+            <div class="metric"><strong>80%</strong><span>Of stakeholders reported faster legislation research</span></div>
+            <div class="metric"><strong>#1</strong><span>Most adopted digital tool GIFCT had released</span></div>
+            <div class="metric"><strong>Global</strong><span>Summit launch across thousands of member orgs</span></div>
+          </div>
+        </section>
+
+        <!-- CHALLENGE / INSIGHT / SOLUTION -->
+        <div class="bento section-block">
+          <article class="card">
+            <h2>The Challenge</h2>
+            <p>The Global Internet Forum to Counter Terrorism (GIFCT) is an NGO founded by Facebook, Microsoft, Twitter and YouTube in 2017 to prevent terrorists and violent extremists from exploiting digital platforms.</p>
+            <p>They had developed a definitional framework of global terrorism and violent extremism legislation. The brief was to translate that research into tangible online tools, ready in time for the GIFCT's annual global summit, where it would debut to thousands of member organisations.</p>
+            <p>The interface had to support governments, researchers, NGOs, and trust-and-safety professionals with very different mental models, without embedding bias into how sensitive data was presented.</p>
+          </article>
+          <aside class="insight">
+            <blockquote>"Support my efforts and speed me up by easing complexity."</blockquote>
+            <cite>Tech company employee, discovery interview</cite>
+          </aside>
+          <article class="card solution">
+            <div>
+              <h2>The Solution</h2>
+              <p>An interface that supports multiple data views and element-level filtering, so users can shape output to their workflow while the underlying semantic framing stays neutral and transparent.</p>
+              <ul class="bullets">
+                <li>Map, chart, and table views of the same core data</li>
+                <li>Element-level filters for precise legislative comparisons</li>
+                <li>Distinct palettes for terrorism vs. violent extremism data</li>
+                <li>Connections out to partner research (e.g. GNET) to avoid dead ends</li>
+                <li>Bespoke Umbraco build the GIFCT team can update without slowing down</li>
+              </ul>
+            </div>
+            <img src="Assets/gifct-embedded_1-img04.png" alt="GIFCT country detail panel and definition controls">
+          </article>
+        </div>
+
+        <!-- DISCOVERY -->
+        <div class="section-block">
+          <h2 class="section-title">Discovery</h2>
+          <p class="section-lede">Two parallel tracks: interviews to understand the work, and desk research to expand the problem space beyond it.</p>
+          <div class="feature-grid">
+            <article class="feature">
+              <h3>User interviews</h3>
+              <p>Research interviews with counter-terror professionals from member organisations including Airbnb and Twitter. The aim was to:</p>
+              <ul>
+                <li>Surface user requirements and opportunities to exceed the brief</li>
+                <li>Get immersed in industry language, mental models, and processes</li>
+                <li>Understand the pain points specific to counter-terror work</li>
+                <li>Prioritise ideas against genuine user need</li>
+              </ul>
+            </article>
+            <article class="feature">
+              <h3>Desk research</h3>
+              <p>After interviews, I used desk research to diverge, following up terminology and patterns surfaced in conversation, and looking at how others had solved adjacent problems. This helped:</p>
+              <ul>
+                <li>Map where the wider industry's frustrations sit now and where they're heading</li>
+                <li>Expand on the strongest interview findings before ideation</li>
+                <li>Study how other domains handle layered disclosure of sensitive data</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+
+        <!-- PERSONAS -->
+        <div class="section-block">
+          <h2 class="section-title">User personas</h2>
+          <p class="section-lede">I'm sceptical that personas belong in every project, but here they helped the creative team and the client share a clear view of who we were solving for, and what each group actually needed from the data.</p>
+          <div class="persona-grid">
+            <article class="persona-card">
+              <span class="persona-card__label">Persona 01</span>
+              <h3>Tech company employees</h3>
+              <blockquote>"Support my efforts and speed me up, by easing complexity."</blockquote>
+              <p>Need flexible, fast-to-navigate data and clearly defined resources they can browse without missing context.</p>
+            </article>
+            <article class="persona-card">
+              <span class="persona-card__label">Persona 02</span>
+              <h3>Researchers &amp; expert practitioners</h3>
+              <blockquote>"Tell me more, lead the way. Be an authoritative voice."</blockquote>
+              <p>Need data that's easy to read and compare to spot emerging trends, with the source's neutrality and credibility made explicit.</p>
+            </article>
+            <article class="persona-card">
+              <span class="persona-card__label">Persona 03</span>
+              <h3>Governments &amp; stakeholders</h3>
+              <blockquote>"Show me the value of our work."</blockquote>
+              <p>Need to understand the data at a glance and feel confident their work is being made accessible to partner companies and working groups.</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- DEFINITION -->
+        <div class="section-block">
+          <h2 class="section-title">Definition &amp; structure</h2>
+          <p class="section-lede">A prioritised brief, a sitemap, and content modelling, delivered to the client alongside the discovery findings so they could follow the reasoning behind every decision.</p>
+          <div class="feature-grid feature-grid--three">
+            <article class="feature">
+              <img src="Assets/gifct-user-needs.png" alt="GIFCT user needs framework">
+              <h3>"I can" user stories</h3>
+              <p>Functionality was prioritised against user-led "I can" statements. A useful frame when working with complex data visualisation.</p>
+            </article>
+            <article class="feature">
+              <img src="Assets/gifct-sitemap.png" alt="GIFCT sitemap">
+              <h3>Sitemap &amp; content model</h3>
+              <p>The sitemap communicated the underlying decision model, and content modelling defined templates and components for the fullest viable build inside the deadline.</p>
+            </article>
+            <article class="feature">
+              <img src="Assets/gifct-embedded_1-img05.gif" alt="GIFCT bubble chart view">
+              <h3>Objectives</h3>
+              <p>Maximise the value drawn from the underlying research, integrate with users' existing workflows, and connect out to partner insights so users never hit a dead end.</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- TESTING & ITERATION -->
+        <div class="section-block">
+          <h2 class="section-title">Testing, iteration &amp; handover</h2>
+          <p class="section-lede">A first prototype and a first developed iteration were tested with stakeholders and users. Their feedback drove pre-launch changes, including a second colour palette to clearly differentiate violent extremism data from terrorism data.</p>
+          <p class="section-lede">Handover included a measurement plan covering events and metrics for Google Analytics, Tag Manager, and HotJar, with each metric tied to a "most likely outcome" criterion. That gave the GIFCT team the tools to direct iteration after launch with confidence.</p>
+        </div>
+
+        <!-- TESTIMONIALS -->
+        <div class="section-block">
+          <h2 class="section-title">What the team said</h2>
+          <div class="testimonial-grid">
+            <article class="testimonial">
+              <blockquote>We couldn't have asked for the demo to go better. It was great. Thank you so much.</blockquote>
+              <cite><strong>Erin Saltman</strong>Executive Director, GIFCT</cite>
+            </article>
+            <article class="testimonial">
+              <blockquote>This is cool! It's a really great effort, I appreciate having had the ability to chat with Ellie!</blockquote>
+              <cite><strong>Josh Parecki</strong>Associate General Counsel, Trust &amp; Safety, Zoom</cite>
+            </article>
+            <article class="testimonial">
+              <blockquote>It was a true pleasure working with you. This project was pretty special to me. It was one of the first I got assigned upon joining GIFCT. Thank you for making the experience a wonderful one.</blockquote>
+              <cite><strong>Nagham El Karhili</strong>Programs &amp; Partnerships Lead, GIFCT</cite>
+            </article>
+          </div>
+        </div>
+
+        <!-- FOOTER CTA -->
+        <section class="footer-cta">
+          <div>
+            <p class="footer-cta__label">More work</p>
+            <h3>See all case studies</h3>
+          </div>
+          <a class="btn" href="portfolio-figma.html#work">Back to work</a>
+        </section>
+
+      </div>
+    </section>
+  </main>
+</body>
+</html>
